@@ -9,4 +9,11 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
+  esbuild: {
+    jsxInject: `import React from 'react'`,
+  },
+  server: {
+    // Enable SPA fallback
+    historyApiFallback: true,
+  },
 })
