@@ -3,11 +3,13 @@ import React from 'react';
 const LandingPage = () => {
     return (
         <div className="landing-page bg-gray-100 min-h-screen flex flex-col">
-            <header className="landing-header bg-blue-600 text-white text-center py-12">
+            <header className="landing-header bg-blue-600 text-white text-center p-16">
                 <h1 className="text-4xl font-bold">Welcome to Ekam Apartments</h1>
                 <p className="text-lg mt-4">Your dream home awaits</p>
                 <button className="cta-button mt-6 px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg shadow-md hover:bg-gray-200">
-                    Explore Now
+                    <a href='/properties' className="text-blue-600 hover:text-blue-800 transition duration-300">
+                        Explore Now
+                    </a> 
                 </button>
             </header>
             <section className="features-section py-16 px-6 bg-white">
@@ -27,9 +29,6 @@ const LandingPage = () => {
                     </div>
                 </div>
             </section>
-            <footer className="landing-footer bg-gray-800 text-white text-center py-6 mt-auto">
-                <p>© 2023 Ekam Apartments. All rights reserved.</p>
-            </footer>
         </div>
     );
 };

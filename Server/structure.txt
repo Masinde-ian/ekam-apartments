@@ -1,0 +1,25 @@
+/src
+    -config 
+        db.js
+    -middlwares
+        authMiddlewares.js
+        errorHandler.js
+    -models
+        Lease.js
+        MaintenanceRequest.js
+        Payment.js
+        Unit.js
+        User.js
+    -routes
+        authRoutes.js
+        leaseRoutes.js
+        MaintenanceRoutes.js
+        propertyRoutes.js
+        tenantRoutes.js
+        unitRoutes.js
+    -services
+        emailService.js
+        paymentService.js
+    -utils
+        logger.js
+        validators.js

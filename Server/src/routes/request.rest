@@ -1,0 +1,45 @@
+POST http://localhost:5000/api/units
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MzA4ZDcwOWY4ZmZmZDZlYzg5Y2JjZSIsInJvbGUiOiJ0ZW5hbnQiLCJpYXQiOjE3NDgwMTI2OTZ9.mKD3gVKyKiHgrrxqdHhv5XFf6M7K4WS2dt8J1_sQrxo
+
+{
+  "houseNumber": "A101",
+  "name": "Ian Masinde",
+  "houseType": "bed-sitter",
+  "status": "available",
+  "rent": 1200
+}
+
+### Register a regular user
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Regular User",
+  "email": "regular@example.com",
+  "password": "TestPassword123"
+}
+
+### Register an admin user
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Admin User",
+  "email": "admin@example.com",
+  "password": "AdminPassword123",
+  "role": "admin"
+}
+
+### Login as admin user
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "AdminPassword123"
+}
+
+
+import { useState, useEffect } from "react";
+import axios from "axios";
