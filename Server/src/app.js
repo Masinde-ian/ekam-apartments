@@ -35,6 +35,7 @@ app.use('/api/auth', authRoutes);
 
 // Protected Routes
 app.use('/api/units', protect, unitRoutes);
+app.use('/api/notifications', protect, require('./routes/notifications'));
 app.use('/api/tenants', protect, tenantRoutes);
 app.use('/api/leases', protect, leaseRoutes);
 app.use('/api/maintenance', protect, maintenanceRoutes);

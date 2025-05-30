@@ -3,7 +3,14 @@ const MaintenanceRequest = require('../models/MaintenanceRequest');
 // Create a new maintenance request
 const createRequest = async (req, res, next) => {
   try {
-    const request = await MaintenanceRequest.create(req.body);
+    const { unitId, description } = req.body;
+    if (!unitId || !description) {
+      return res.status(400).json({ success: false, message: 'unitId and description are required.' });
+    }
+    const request = await MaintenanceRequest.create({
+      unitId,
+      description,
+    });
     res.status(201).json({ success: true, data: request });
   } catch (err) {
     next(err);
@@ -13,7 +20,7 @@ const createRequest = async (req, res, next) => {
 // Get all maintenance requests
 const getAllRequests = async (req, res, next) => {
   try {
-    const requests = await MaintenanceRequest.find().populate('unit tenant');
+    const requests = await MaintenanceRequest.find().populate('unitId');
     res.status(200).json({ success: true, data: requests });
   } catch (err) {
     next(err);
@@ -23,7 +30,7 @@ const getAllRequests = async (req, res, next) => {
 // Get single request by ID
 const getRequestById = async (req, res, next) => {
   try {
-    const request = await MaintenanceRequest.findById(req.params.id).populate('unit tenant');
+    const request = await MaintenanceRequest.findById(req.params.id).populate('unitId');
     if (!request) {
       return res.status(404).json({ success: false, message: 'Request not found' });
     }
@@ -36,9 +43,7 @@ const getRequestById = async (req, res, next) => {
 // Update request status
 const updateRequest = async (req, res, next) => {
   try {
-    const updated = await MaintenanceRequest.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
+    const updated = await MaintenanceRequest.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updated) {
       return res.status(404).json({ success: false, message: 'Request not found' });
     }

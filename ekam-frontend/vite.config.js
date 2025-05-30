@@ -15,5 +15,8 @@ export default defineConfig({
   server: {
     // Enable SPA fallback
     historyApiFallback: true,
+    allowedHosts: [
+      'b300-41-90-172-163.ngrok-free.app'
+    ]
   },
 })

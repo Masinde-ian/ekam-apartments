@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
+type Lease = {
+    id: string | number;
+    tenant: string;
+    property: string;
+    startDate: string;
+    endDate: string;
+};
+
 const LeasesPage = () => {
-    const [leases, setLeases] = useState([]);
+    const [leases, setLeases] = useState<Lease[]>([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         // Simulate fetching lease data from an API
@@ -17,7 +25,11 @@ const LeasesPage = () => {
                 const data = await response.json();
                 setLeases(data);
             } catch (err) {
-                setError(err.message);
+                if (err instanceof Error) {
+                    setError(err.message);
+                } else {
+                    setError('An unknown error occurred');
+                }
             } finally {
                 setLoading(false);
             }
@@ -26,7 +38,7 @@ const LeasesPage = () => {
         fetchLeases();
     }, []);
 
-    const handleLeaseAction = (leaseId, action) => {
+    const handleLeaseAction = (leaseId: any, action: string) => {
         // Handle actions like renew, terminate, etc.
         console.log(`Action: ${action} on Lease ID: ${leaseId}`);
     };
